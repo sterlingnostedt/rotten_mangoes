@@ -9,7 +9,9 @@
 <h4>Dir. <%= @movie.director %> | <%= @movie.runtime_in_minutes %> minutes</h4>
 
 <p><%= @movie.description %></p>
-
+<p>
+  <%= image_tag @movie.image.thumb.url %>
+</p>
 <hr>
 
 <h3>Reviews of <em><%= @movie.title %></em></h3>

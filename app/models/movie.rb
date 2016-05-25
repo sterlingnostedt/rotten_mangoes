@@ -1,9 +1,7 @@
 class Movie < ActiveRecord::Base
 
   has_many :reviews 
-
-  mount_uploader :image, ImageUploader 
-
+  mount_uploader :image, ImageUploader
   validates :title,
     presence: true
 
@@ -16,7 +14,7 @@ class Movie < ActiveRecord::Base
   validates :description,
     presence: true
 
-  validates :poster_image_url,
+  validates :image,
     presence: true
 
   validates :release_date,
@@ -27,8 +25,9 @@ class Movie < ActiveRecord::Base
   def review_average
     if movie.review.count >= 1
     reviews.sum(:rating_out_of_ten)/reviews.size
-  else
-    puts "this movie has no reviews"
+    else
+      puts "this movie has no reviews"
+    end
   end
 
   protected
@@ -37,6 +36,5 @@ class Movie < ActiveRecord::Base
     if release_date.present?
       errors.add(:release_date, "should be in the past") if release_date > Date.today
     end
-    end 
   end
 end
