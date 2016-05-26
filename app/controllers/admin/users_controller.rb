@@ -41,7 +41,7 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to admin_user_path
+    redirect_to admin_users_path
   end
 
   def login_as_user
@@ -54,7 +54,7 @@ class Admin::UsersController < ApplicationController
     current_user_reset
     session[:user_id] = session[:admin_id]
     session[:admin_id] = nil
-    return_to admin_users_path
+    redirect_to admin_users_path
   end
 
   protected
